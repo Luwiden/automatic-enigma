@@ -27,18 +27,41 @@ def seedFilm():
     rawMovie = input()
     film = ia.search_movie(rawMovie)
     cleanMovie = film[0]
-    print(cleanMovie)
     seedID = cleanMovie.movieID
-    print(seedID)
     return(seedID)
     
-def nextFilmGen(nextID):
+def nextactorGen(nextID):
     currentMovie = ia.get_movie(nextID)
-    print(currentMovie)
+    topActor = currentMovie['actors'][0]
+    topActor = str(topActor)
+    cleanActor = ia.search_person(topActor)
+    actorID = cleanActor[0].personID
+    return(actorID)
+
+def nextFilmGen(prevActorID):
     
     
     
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+#the program will get the top actor of an inputted film. it will then get
+#that actors top film. each film is added to a list - if that film is 
+#already on the list, the next actor will be picked in order to prevent a 
+# loop.     
+trackingList = []
 prevID = seedFilm()
-nextFilmGen(prevID)
+for x in range(5):
+    trackingList = trackingList + [prevID]
+    topactorID = nextactorGen(prevID)
+    nextFilmID = nextFilmGen(topactorID)
+
     
     
